@@ -16,7 +16,6 @@ public:
         int i=0;
         t1=head;
         k=n-k;
-        cout<<k<<endl;
         while(i<k-1){
             t1=t1->next;
             t2=t2->next;
@@ -27,14 +26,11 @@ public:
         while(t2!=NULL and t2->next!=NULL and t2->next->next!=NULL){
             t2=t2->next;
         }
-        cout<<(t2->val)<<endl;
         if(!t2->next)
         {t2->next=head;
-        cout<<"yes";
         }
         else if(!t2->next->next){
             t2->next->next=head;
-            cout<<"yesss";
         }
         return ans;
         
