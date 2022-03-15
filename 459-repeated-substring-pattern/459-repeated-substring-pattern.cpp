@@ -2,27 +2,23 @@ class Solution {
 public:
     bool repeatedSubstringPattern(string s) {
        int n=s.length();
-        if(n==1) return false;
-       for(int i=1;i*i<=n;i++){
-           if(n%i==0){
-               string check=s.substr(0,i);
-               int cnt=n/i;
-               string add="";
-               while(cnt--){
-                   add.append(check);
-               }
-               if(add==s) return true;
-               if(i==1) continue;
-               check=s.substr(0,n/i);
-               cnt=i;
-               add="";
-               while(cnt--){
-                   add.append(check);
-               }
-               if(add==s) return true;
-           }
-       }
-        return false;
+        vector<int> store(n,0);
+        int i=0,j=1;
+        while(j<n){
+            if(s[i]==s[j]){
+                store[j]=i+1;
+                i++,j++;
+            }else{
+                if(i!=0){
+                    i=store[i-1];
+                }else{
+                    j++;
+                }
+            }
+        }
+        int patternLength=n-store.back();
+        if(store.back()>0 and n%patternLength==0) return true;
+        return false;    
         
     }
 };
