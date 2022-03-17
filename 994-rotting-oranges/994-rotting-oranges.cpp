@@ -19,7 +19,7 @@ public:
         if(!flag) return 0;
         int ans=0;
         while(!rotten.empty()){
-            auto arr=rotten.front();
+            auto &arr=rotten.front();
             int x=arr[0],y=arr[1],z=arr[2];
             rotten.pop();
             for(int i=0;i<4;i++){
@@ -33,8 +33,8 @@ public:
                 }
             }
         }
-        for(auto x:grid){
-            for(auto y:x){
+        for(auto &x:grid){
+            for(auto &y:x){
                 if(y==1) return -1;
             }
         }
