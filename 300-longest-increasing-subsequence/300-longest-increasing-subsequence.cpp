@@ -1,26 +1,17 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        // Traverse all the elements of the nums such that all the numbers behind
-        // a given element which is smaller than it 
-        // can be considered as ans
-        // but the maximum value of all the smaller elements will be only taken into consideration
-        int n=nums.size();
-        vector<int> dp(n,0);
-        int ans=INT_MIN;
-        for(int i=0;i<n;i++){
-            for(int j=i;j>=0;j--){
-                if(nums[i]>nums[j]){
-                    // finding smaller elements behind ith element
-                    dp[i]=max(dp[i],dp[j]);
-                    // and storing the maximum value out of all the smaller elements
-                }
+        // Binary search implementation
+        vector<int> ans;
+        ans.push_back(nums[0]);
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]>ans.back()){
+                ans.push_back(nums[i]);
+            }else{
+                int ii=lower_bound(ans.begin(),ans.end(),nums[i])-ans.begin();
+                ans[ii]=nums[i];
             }
-            // as current value will also be added in the sequence
-            dp[i]++;
-            ans=max(ans,dp[i]);
         }
-        
-        return ans;
+        return ans.size();
     }
 };
