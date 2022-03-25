@@ -13,15 +13,13 @@ class Solution {
 public:
     vector<int> store;
     void getAns(TreeNode *root){
-        if(root==NULL) return;
-        
-        store.push_back(root->val);
+        if(root==NULL) return; 
         getAns(root->left);
+        store.push_back(root->val);
         getAns(root->right);
     }
     int getMinimumDifference(TreeNode* root) {
         getAns(root);
-        sort(store.begin(),store.end());
         int ans=INT_MAX;
         for(int i=0;i<store.size()-1;i++){
             ans=min(ans,abs(store[i]-store[i+1]));
