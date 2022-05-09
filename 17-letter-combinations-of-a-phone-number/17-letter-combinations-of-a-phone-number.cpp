@@ -20,10 +20,3 @@ public:
         return ans;
     }
 };
-
-
-
-/*
-Idea - 
-Define a new mobile keyboard in which all the alphabets of english can be 
-*/
