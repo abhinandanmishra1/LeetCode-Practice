@@ -45,6 +45,8 @@ public:
 // If we think of moving from backward (n-2)th place and keep checking whether we can reach 
 // to last position from the current position or not 
 // if yes then change last to currentPosition and keep checking untill i>=0
+
+/*
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
@@ -60,4 +62,25 @@ public:
        return last==0;
     }
 };
+*/
 
+
+// Approach 4
+
+class Solution {
+public:
+    // If i store the maximum range from current index
+    // and iterate only upto the maximum range
+    // update the maximumRange if currentRange is maximum
+    bool canJump(vector<int>& nums) {
+        int maximumRange=0; // initially Range is 0 (before i=0)
+        int i=0;
+        while(i<=maximumRange){
+            int currentRange=i+nums[i];
+            if(currentRange>=nums.size()-1) return true;
+            maximumRange=max(maximumRange,currentRange);
+            i++;
+        }
+        return false;
+    }
+};
