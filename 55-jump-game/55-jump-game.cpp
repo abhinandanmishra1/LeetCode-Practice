@@ -18,6 +18,7 @@ public:
 */
 
 // Approach 2
+/*
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
@@ -33,7 +34,30 @@ public:
                  return false;
             }
         }
-        if(prevLargestRange.top()>=nums.size()-1) return true;
+      if(prevLargestRange.top()>=nums.size()-1) return true; // Handling the case where size==1
         return false;
     }
 };
+
+*/
+
+// Approach - 3
+// If we think of moving from backward (n-2)th place and keep checking whether we can reach 
+// to last position from the current position or not 
+// if yes then change last to currentPosition and keep checking untill i>=0
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n=nums.size();
+        int last=n-1;
+        for(int i=n-2;i>=0;i--){
+            int currentRange=i+nums[i];
+            if(currentRange>=last){
+                last=i;
+                // changing it to i to check now can we reach to this i or not
+            }
+        }
+       return last==0;
+    }
+};
+
