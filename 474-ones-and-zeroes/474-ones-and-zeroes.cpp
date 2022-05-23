@@ -13,9 +13,9 @@ public:
         // this 3d vector signifies that -> dp[i][j][k]
         // How many strings can be made for maximum of i zeroes , j ones and using k strings
         int k=1;
-        for(auto str:strs){
+        for(auto &str:strs){
             int zero=0,one=0;
-            for(auto ch:str){
+            for(auto &ch:str){
                 zero+=(ch=='0');
                 one+=(ch=='1');
             }
