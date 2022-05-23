@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maximumProduct(vector<int>& nums) {
-        sort(nums.rbegin(),nums.rend());
-        return max(nums[0]*nums[1]*nums[2],nums[0]*nums.back()*nums[nums.size()-2]);
+        sort(begin(nums),end(nums));
+        return max(nums[0]*nums[1]*nums.back(),nums.rbegin()[1]*nums.rbegin()[2]*nums.back());
     }
 };
