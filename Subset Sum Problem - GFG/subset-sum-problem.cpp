@@ -12,38 +12,17 @@ public:
     bool isSubsetSum(vector<int>arr, int sum){
         // code here 
         int n=arr.size();
-        // vector<vector<bool>> dp(n+1,vector<bool>(sum+1,false));
-        // dp[0][0]=true;
-        // for(int i=1;i<n+1;i++){
-        //     for(int j=0;j<sum+1;j++){
-        //         dp[i][j]=dp[i-1][j];
-        //         if(j>=arr[i]){
-        //             dp[i][j]=dp[i][j] or dp[i-1][j-arr[i]];
-        //         }
-        //     }
-        // }
-        // return dp[n][sum];
-        n++;
-        bool dp[n][sum+1];
-        // n rows and sum+1 cols 
-        // for sum=0 it is possible for all the subset hence make it true;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<=sum;j++){
-                if(!i) dp[i][j]=false;
-                if(!j) dp[i][j]=true;
-            }
-        }
-        for(int i=1;i<n;i++){
-            for(int j=1;j<=sum;j++){
-                
-                if(j>=arr[i-1] ){
-                    dp[i][j]=(dp[i-1][j-arr[i-1]] or dp[i-1][j]);
-                }else{
-                    dp[i][j]=dp[i-1][j];
+        vector<vector<bool>> dp(n+1,vector<bool>(sum+1));
+        dp[0][0]=true;
+        for(int i=1;i<n+1;i++){
+            for(int j=0;j<sum+1;j++){
+                dp[i][j]=dp[i-1][j];
+                if(j>=arr[i-1]){
+                    dp[i][j]=dp[i][j] or dp[i-1][j-arr[i-1]];
                 }
             }
         }
-        return dp[n-1][sum];
+        return dp[n][sum];
     }
 };
 
