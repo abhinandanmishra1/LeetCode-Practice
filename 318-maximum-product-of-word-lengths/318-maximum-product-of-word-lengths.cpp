@@ -4,7 +4,7 @@ public:
         unordered_map<int,unordered_map<char,int>> mp;
         int n=words.size();
         for(int i=0;i<n;i++){
-            for(auto x:words[i]){
+            for(auto &x:words[i]){
                 mp[i][x]++;
             }
         }
