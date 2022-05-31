@@ -5,24 +5,25 @@ using namespace std;
  // } Driver Code Ends
 class Solution{
     public:
-    vector<vector<int>>dp;
-    int ans=0;
-    int lcs(string &s1,string &s2,int n,int m){
-        if(n==0 or m==0) return 0;
-       int count1=0;
-       if(dp[n][m]!=-1) return dp[n][m];
-       if(s1[n-1]==s2[m-1]){
-           count1=1+lcs(s1,s2,n-1,m-1);
-       }
-       int count2=lcs(s1,s2,n-1,m);
-       int count3=lcs(s1,s2,n,m-1);
-       ans=max({ans,count1,count2,count3});
-       return dp[n][m]=count1;
-    }
+    
     int longestCommonSubstr (string &s1, string &s2, int n, int m)
     {   
-         dp.resize(n+1,vector<int>(m+1,-1));
-         lcs(s1,s2,n,m);
+         vector<vector<int>>dp(n+1,vector<int>(m+1));
+         int ans=0;
+         for(int i=0;i<=n;i++){
+             for(int j=0;j<=m;j++){
+                 if(i==0 or j==0){
+                     dp[i][j]=0;
+                 }else{
+                     if(s1[i-1]==s2[j-1]){
+                         dp[i][j]=1+dp[i-1][j-1];
+                         ans=max(ans,dp[i][j]);
+                     }else{
+                         dp[i][j]=0;
+                     }
+                 }
+             }
+         }
          return ans;
     }
 };
