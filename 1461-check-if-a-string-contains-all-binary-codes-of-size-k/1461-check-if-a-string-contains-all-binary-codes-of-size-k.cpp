@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool hasAllCodes(string s, int k) {
-        set<int> st;
+        unordered_set<int> st;
         int f=0;
         int n=s.length();
         // checking if number of substrings of length k is less than required number
