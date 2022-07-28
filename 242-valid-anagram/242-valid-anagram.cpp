@@ -3,19 +3,18 @@ public:
     bool isAnagram(string s, string t) {
         if(s.length()!=t.length()) return false;
         
-        unordered_map<char,int> count_s;
-        unordered_map<char,int> count_t;
+        unordered_map<char,int> count;
         
         for(auto x:s){
-            count_s[x]++;
+            count[x]++;
         }
         
         for(auto x:t){
-            count_t[x]++;
+            count[x]--;
         }
         
         for(auto x:s){
-            if(count_s[x]!=count_t[x]) return false;
+            if(count[x]!=0) return false;
         }
         
         return true;
