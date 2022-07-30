@@ -5,7 +5,7 @@ public:
         for(auto &word:words2){
             
             unordered_map<char,int> counter;
-            for(auto x:word){
+            for(auto &x:word){
                 counter[x]++;
                 store[x]=max(store[x],counter[x]);
             }
@@ -16,11 +16,11 @@ public:
         
         for(auto &word:words1){
             unordered_map<char,int> counter;
-            for(auto x:word){
+            for(auto &x:word){
                 counter[x]++;
             }
             bool add=true;
-            for(auto letter_count:store){
+            for(auto &letter_count:store){
                 if(counter[letter_count.first]<letter_count.second){
                     add=false;
                     break;
