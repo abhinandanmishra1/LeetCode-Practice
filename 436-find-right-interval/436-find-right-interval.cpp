@@ -9,7 +9,7 @@ public:
         sort(store.begin(),store.end());
         
         vector<int> res;
-        for(auto x:intervals){
+        for(auto &x:intervals){
             
             int start=-1,end=store.size();
             while(start+1<end){
