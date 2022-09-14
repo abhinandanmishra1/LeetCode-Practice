@@ -12,32 +12,19 @@
 class Solution {
 public:
     int ans=0;
-    void findans(TreeNode *root,vector<int>& arr){
+    void findans(TreeNode *root,long int path){
         if(!root) return;
         if(!root->left and !root->right){
-            int check=0;
-            arr[root->val]++;
-            for(int i=1;i<=9;i++){
-                if(arr[i]&1) check++;
-                if(check>1){
-                    break;
-                }
-            }
-            if(check<=1) ans++;
-            arr[root->val]--;
+            path=path^(1<<root->val);
+            if(__builtin_popcount(path)<=1) ans++;
             return;
         }
-        
-        arr[root->val]++;
-        findans(root->left,arr);
-        arr[root->val]--;
-        arr[root->val]++;
-        findans(root->right,arr);
-        arr[root->val]--;
+        findans(root->left,path^(1<<root->val));
+        findans(root->right,path^(1<<root->val));
     }
     int pseudoPalindromicPaths (TreeNode* root) {
-        vector<int> arr(10,0);
-        findans(root,arr);
+        long int path=0;
+        findans(root,path);
         return ans;
     }
 };
