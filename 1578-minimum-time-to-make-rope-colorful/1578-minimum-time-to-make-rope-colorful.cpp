@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int minCost(string clr, vector<int>& nt) {
+    int minCost(string &clr, vector<int>& nt) {
         int ans=0;
         
         int i=0,n=clr.length();
