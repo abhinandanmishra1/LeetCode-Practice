@@ -5,11 +5,11 @@ public:
         store.clear();
     }
     
-    void set(string key, string value, int timestamp) {
+    void set(const string &key, const string &value, int timestamp) {
         store[key].push_back({timestamp,value});
     }
     
-    string get(string key, int timestamp) {
+    string get(const string &key, int timestamp) {
         int largestIndex=store[key].size();
         if(largestIndex==0) return "";
         //cout<<key<<" "<<timestamp;
