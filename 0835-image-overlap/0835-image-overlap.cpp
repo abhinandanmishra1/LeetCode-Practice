@@ -17,15 +17,15 @@ public:
         }
         
         unordered_map<string,int> count;
-        for(auto x:st1){
-            for(auto y:st2){
+        for(auto &x:st1){
+            for(auto &y:st2){
                 string s=to_string(x[0]-y[0])+"#"+to_string(x[1]-y[1]);
                 count[s]++;
             }
         }
         
         int ans=0;
-        for(auto x:count){
+        for(auto &x:count){
             ans=max(ans,x.second);
         }
         return ans;
